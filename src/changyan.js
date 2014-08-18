@@ -36,7 +36,15 @@ var Changyan = Widget.extend({
       window.SCS_NO_IFRAME = true;
   },
   initCommentCount: function() {
-      var commentInfo2 = new CommentInfo({commentItem : '.js-comment-item2',commentType:2});
+      var commentInfo2 = new CommentInfo({commentItem : '.js-comment-item2',commentType:2,callback:function(data){
+          var comment = data.result;
+          for(var i=0 in comment){
+              if(comment[i].sum !=0){
+                  var item = $('[data-topicId='+i+']');
+                  item.show();
+              }
+          }
+      }});
       commentInfo2.init();
   }
 });
